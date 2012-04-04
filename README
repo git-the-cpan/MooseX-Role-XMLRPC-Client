@@ -1,85 +1,56 @@
-NAME
-    MooseX::Role::XMLRPC::Client - Provide provide the needed bits to be a
-    XML-RPC client
+MooseX-Role-XMLRPC-Client
 
-VERSION
-    This document describes version 0.06 of MooseX::Role::XMLRPC::Client -
-    released April 03, 2012 as part of MooseX-Role-XMLRPC-Client.
+A Moose role providing a configurable XMLRPC client.
 
-SYNOPSIS
-        package MultipleWiths;
-        use Moose;
+INSTALLATION
 
-        # ...
+To install this module, run the following commands:
 
-        # we don't want to keep any login information here
-        with 'MooseX::Role::XMLRPC::Client' => {
-            name => 'bugzilla',
-            uri  => 'https://bugzilla.redhat.com/xmlrpc.cgi',
-            login_info => 0,
-        };
+	perl Makefile.PL
+	make
+	make test
+	make install
 
-        # basic info
-        with 'MooseX::Role::XMLRPC::Client' => {
-            name => 'foo',
-            uri  => 'http://foo.org/a/b/c',
-        };
+SUPPORT AND DOCUMENTATION
 
-        sub _build_foo_userid { 'userid'   }
-        sub _build_foo_passwd { 'passw0rd' }
+After installing, you can find documentation for this module with the
+perldoc command.
 
-        sub foo_login  { 'do login magic here..'   }
-        sub foo_logout { 'do logout magic here...' }
+    perldoc MooseX::Role::XMLRPC::Client
 
-DESCRIPTION
-    This is a Moose role that provides methods and attributes needed to
-    enable a class to serve as an XML-RPC client. It is parameterized
-    through MooseX::Role::Parameterized, so you can customize how it embeds
-    in your class. You can even embed it multiple times with different
-    parameterization, if it strikes your fancy :-)
+You can also look for information at:
 
-ROLE PARAMETERS
-    This role generates methods and attributes depending on these
-    parameters. None of them are required.
+    RT, CPAN's request tracker
+        http://rt.cpan.org/NoAuth/Bugs.html?Dist=MooseX-Role-XMLRPC-Client
 
-  name
-    This parameter defaults to "xmlrpc". It serves as a prefix to all
-    generated methods and attributes. File and URI types are coerced.
+    AnnoCPAN, Annotated CPAN documentation
+        http://annocpan.org/dist/MooseX-Role-XMLRPC-Client
 
-  uri (Uri)
-  login_info (Bool)
-  cookie_jar (File)
-  traits (ArrayRef[Str])
-    An arrayref of traits to apply to the attributes.
+    CPAN Ratings
+        http://cpanratings.perl.org/d/MooseX-Role-XMLRPC-Client
 
-METHODS/ATTRIBUTES
-    Right now, the best documentation can be found in the tests.
+    Search CPAN
+        http://search.cpan.org/dist/MooseX-Role-XMLRPC-Client/
 
-SEE ALSO
-    Please see those modules/websites for more information related to this
-    module.
 
-    *   RPC::XML::Client
+COPYRIGHT AND LICENCE
 
-SOURCE
-    The development version is on github at
-    <http://github.com/RsrchBoy/moosex-role-xmlrpc-client> and may be cloned
-    from <git://github.com/RsrchBoy/moosex-role-xmlrpc-client.git>
+Copyright (C) 2009 Chris Weyl <cweyl@alumni.drew.edu>
 
-BUGS
-    Please report any bugs or feature requests on the bugtracker website
-    https://github.com/RsrchBoy/moosex-role-xmlrpc-client/issues
+This library is free software; you can redistribute it and/or
+modify it under the terms of the GNU Lesser General Public
+License as published by the Free Software Foundation; either
+version 2.1 of the License, or (at your option) any later version.
 
-    When submitting a bug or request, please include a test-file or a patch
-    to an existing test-file that illustrates the bug or desired feature.
+This library is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+Lesser General Public License for more details.
 
-AUTHOR
-    Chris Weyl <cweyl@alumni.drew.edu>
+You should have received a copy of the GNU Lesser General Public
+License along with this library; if not, write to the 
 
-COPYRIGHT AND LICENSE
-    This software is Copyright (c) 2011 by Chris Weyl.
-
-    This is free software, licensed under:
-
-      The GNU Lesser General Public License, Version 2.1, February 1999
+    Free Software Foundation, Inc.
+    59 Temple Place, Suite 330
+    Boston, MA  02111-1307  USA
 

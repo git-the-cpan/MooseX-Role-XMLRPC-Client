@@ -1,18 +1,21 @@
+#############################################################################
 #
-# This file is part of MooseX-Role-XMLRPC-Client
+# Provide XML-RPC methods.
 #
-# This software is Copyright (c) 2011 by Chris Weyl.
+# Author:  Chris Weyl (cpan:RSRCHBOY), <cweyl@alumni.drew.edu>
+# Company: No company, personal work
+# Created: 01/11/2009 12:00:39 PM PST
 #
-# This is free software, licensed under:
+# Copyright (c) 2009 Chris Weyl <cweyl@alumni.drew.edu>
 #
-#   The GNU Lesser General Public License, Version 2.1, February 1999
+# This library is free software; you can redistribute it and/or
+# modify it under the terms of the GNU Lesser General Public
+# License as published by the Free Software Foundation; either
+# version 2.1 of the License, or (at your option) any later version.
 #
-package MooseX::Role::XMLRPC::Client;
-{
-  $MooseX::Role::XMLRPC::Client::VERSION = '0.06';
-}
+#############################################################################
 
-# ABSTRACT: Provide provide the needed bits to be a XML-RPC client
+package MooseX::Role::XMLRPC::Client;
 
 use MooseX::Role::Parameterized;
 
@@ -25,6 +28,8 @@ use HTTP::Cookies;
 use RPC::XML::Client;
 
 use namespace::clean -except => 'meta';
+
+our $VERSION = '0.07';
 
 parameter name => (is => 'ro', isa => Str, default => 'xmlrpc' );
 parameter uri  => (is => 'ro', isa => Uri, coerce => 1, predicate => 'has_uri');
@@ -109,19 +114,11 @@ role {
 
 1;
 
-
-
-=pod
-
-=encoding utf-8
+__END__
 
 =head1 NAME
 
-MooseX::Role::XMLRPC::Client - Provide provide the needed bits to be a XML-RPC client
-
-=head1 VERSION
-
-This document describes version 0.06 of MooseX::Role::XMLRPC::Client - released April 03, 2012 as part of MooseX-Role-XMLRPC-Client.
+MooseX::Role::XMLRPC::Client - provide the needed bits to be a XML-RPC client
 
 =head1 SYNOPSIS
 
@@ -154,10 +151,8 @@ This document describes version 0.06 of MooseX::Role::XMLRPC::Client - released 
 This is a L<Moose> role that provides methods and attributes needed to enable
 a class to serve as an XML-RPC client. It is parameterized through
 L<MooseX::Role::Parameterized>, so you can customize how it embeds in your
-class.  You can even embed it multiple times with different parameterization,
+class.  You can even embed it multiple times with different paramaterization,
 if it strikes your fancy :-)
-
-=for stopwords uri xmlrpc rpc
 
 =head1 ROLE PARAMETERS
 
@@ -166,10 +161,10 @@ None of them are required.
 
 =head2 name
 
-This parameter defaults to "xmlrpc".  It serves as a prefix to all generated
+This parameter defaults to "xlmrpc".  It serves as a prefix to all generated
 methods and attributes.  File and URI types are coerced.
 
-=head2 uri (Uri)
+=head2 uri (URI)
 
 =head2 login_info (Bool)
 
@@ -185,44 +180,42 @@ Right now, the best documentation can be found in the tests.
 
 =head1 SEE ALSO
 
-Please see those modules/websites for more information related to this module.
+L<RPC::XML::Client>, L<Moose::Role>, L<MooseX::Role::Parameterized>.
 
-=over 4
+=head1 BUGS AND LIMITATIONS
 
-=item *
+There are no known bugs in this module.
 
-L<RPC::XML::Client>
+Please report problems to Chris Weyl <cweyl@alumni.drew.edu>, or (preferred)
+to this package's RT tracker at <bug-MooseX-Role-XMLRPC-Client@rt.cpan.org>.
 
-=back
-
-=head1 SOURCE
-
-The development version is on github at L<http://github.com/RsrchBoy/moosex-role-xmlrpc-client>
-and may be cloned from L<git://github.com/RsrchBoy/moosex-role-xmlrpc-client.git>
-
-=head1 BUGS
-
-Please report any bugs or feature requests on the bugtracker website
-https://github.com/RsrchBoy/moosex-role-xmlrpc-client/issues
-
-When submitting a bug or request, please include a test-file or a
-patch to an existing test-file that illustrates the bug or desired
-feature.
+Patches are welcome.
 
 =head1 AUTHOR
 
-Chris Weyl <cweyl@alumni.drew.edu>
+Chris Weyl  <cweyl@alumni.drew.edu>
 
-=head1 COPYRIGHT AND LICENSE
 
-This software is Copyright (c) 2011 by Chris Weyl.
+=head1 LICENSE AND COPYRIGHT
 
-This is free software, licensed under:
+Copyright (c) 2009 Chris Weyl <cweyl@alumni.drew.edu>
 
-  The GNU Lesser General Public License, Version 2.1, February 1999
+This library is free software; you can redistribute it and/or
+modify it under the terms of the GNU Lesser General Public
+License as published by the Free Software Foundation; either
+version 2.1 of the License, or (at your option) any later version.
+
+This library is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public
+License along with this library; if not, write to the
+
+    Free Software Foundation, Inc.
+    59 Temple Place, Suite 330
+    Boston, MA  02111-1307  USA
 
 =cut
-
-
-__END__
 

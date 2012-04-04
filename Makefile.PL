@@ -1,66 +1,32 @@
+use inc::Module::Install;
 
-use strict;
-use warnings;
+name     'MooseX-Role-XMLRPC-Client';
+all_from 'lib/MooseX/Role/XMLRPC/Client.pm';
+author   'Chris Weyl <cweyl@alumni.drew.edu>';
+license  'perl';
 
-use 5.006;
+no_index 'directory' => 'xt';
 
-use ExtUtils::MakeMaker 6.30;
+repository 'http://hg.fedoraproject.org//hg/camelus';
 
+requires 'namespace::clean';
 
+requires 'MooseX::AttributeShortcuts' => 0.009;
+requires 'MooseX::Role::Parameterized' => 0.02;
+requires 'MooseX::Types';
+requires 'MooseX::Types::URI';
+requires 'MooseX::Types::Path::Class';
 
-my %WriteMakefileArgs = (
-  "ABSTRACT" => "Provide provide the needed bits to be a XML-RPC client",
-  "AUTHOR" => "Chris Weyl <cweyl\@alumni.drew.edu>",
-  "BUILD_REQUIRES" => {
-    "File::Find" => 0,
-    "File::Temp" => 0,
-    "Moose" => 0,
-    "Test::More" => "0.88",
-    "Test::Requires" => 0,
-    "strict" => 0,
-    "warnings" => 0
-  },
-  "CONFIGURE_REQUIRES" => {
-    "ExtUtils::MakeMaker" => "6.30"
-  },
-  "DISTNAME" => "MooseX-Role-XMLRPC-Client",
-  "EXE_FILES" => [],
-  "LICENSE" => "lgpl",
-  "NAME" => "MooseX::Role::XMLRPC::Client",
-  "PREREQ_PM" => {
-    "HTTP::Cookies" => 0,
-    "MooseX::AttributeShortcuts" => 0,
-    "MooseX::Role::Parameterized" => 0,
-    "MooseX::Types::Moose" => 0,
-    "MooseX::Types::Path::Class" => 0,
-    "MooseX::Types::URI" => 0,
-    "RPC::XML::Client" => 0,
-    "namespace::clean" => 0
-  },
-  "VERSION" => "0.06",
-  "test" => {
-    "TESTS" => "t/*.t"
-  }
-);
+requires 'HTTP::Cookies';
+requires 'RPC::XML::Client';
 
+test_requires 'Test::More';
+test_requires 'Test::Requires';
+test_requires 'Crypt::SSLeay';
 
-unless ( eval { ExtUtils::MakeMaker->VERSION(6.56) } ) {
-  my $br = delete $WriteMakefileArgs{BUILD_REQUIRES};
-  my $pp = $WriteMakefileArgs{PREREQ_PM};
-  for my $mod ( keys %$br ) {
-    if ( exists $pp->{$mod} ) {
-      $pp->{$mod} = $br->{$mod} if $br->{$mod} > $pp->{$mod};
-    }
-    else {
-      $pp->{$mod} = $br->{$mod};
-    }
-  }
-}
+extra_tests;
+auto_provides;
+auto_install;
 
-delete $WriteMakefileArgs{CONFIGURE_REQUIRES}
-  unless eval { ExtUtils::MakeMaker->VERSION(6.52) };
-
-WriteMakefile(%WriteMakefileArgs);
-
-
+WriteAll;
 
